@@ -13,7 +13,7 @@ HopShop requires Node.js and Python 3 to be installed.
 1. Clone the repository
 
 ```bash
-git clone https://github.com/joshuaeduque/hopshop
+git clone https://github.com/joshuaeduque/hopshop hopshop
 ```
 
 2. Navigate to the project directory
