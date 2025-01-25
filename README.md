@@ -1,12 +1,19 @@
 ## About HopShop
 
-HopShop is a frog ecommerce site.
+HopShop is a frog focused ecommerce site developed for CS 4393 User Interfaces semester project.
+
+### Built With
+
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ## Getting Started
 
 ### Prerequisites
 
-HopShop requires Node.js and Python 3 to be installed.
+HopShop requires Node.js and Python 3 to be installed on your machine.
 
 ## Installation
 
@@ -30,19 +37,21 @@ cd hopshop
 
 4. Install the backend dependencies
 ```bash
-# We recommend using a Python virtual environment like venv to install project dependencies
+# We recommend using a Python virtual environment like venv to ensure dependency compatability!
 (cd backend && pip install -r requirements.txt)
 ```
 
 ## Usage
 
-NOTE: We only have dev execution scripts at the moment.
+Only development execution scripts are available at the moment.
 
 Execution scripts can be found in the `frontend` and `backend` directories respectively. They can be executed like so:
 
 ```bash
 ./start_dev.sh
 ```
+
+Please note that the backend execution script does not automatically enter your virtual environment if you choose to use one.
 
 ## License
 
