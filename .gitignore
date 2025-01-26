@@ -1,0 +1,22 @@
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore environment folder, NEVER IN YOUR WHOLE CAREER SHOULD YOU 'git push' .env or venv/ silly goose.
+venv/
+.env
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific junk (e.g., on macOS)
+.DS_Store
+
+# Ignore node_modules for JavaScript projects
+node_modules/
+
+# Ignore coverage data, build artifacts
+coverage/
+dist/
+build/
+
