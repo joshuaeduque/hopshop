@@ -25,4 +25,4 @@ else
 fi
 
 # Run the FastAPI development server
-uvicorn src.main:app --reload
+uvicorn backend.app.main:app --reload
