@@ -18,7 +18,7 @@ source $VENV_DIR/bin/activate
 
 # Check if virtual environment is active
 if [ ! -n "$VIRTUAL_ENV" ]; then
-    echo "An error occured while activating the virtual environment"
+    echo "ERROR: An error occured while activating the virtual environment"
     exit 1
 fi
 
@@ -29,8 +29,20 @@ pip install -r requirements.txt
 
 echo "Python dependencies installed"
 
+# Navigate to the frontend directory
+cd ./frontend
+
 # Install node dependencies
-(cd ./frontend && npm install)
+# Check if pnpm is installed
+if command -v pnpm &> /dev/null; then
+    pnpm install
+# Check if npm is installed
+elif command -v npm &> /dev/null; then
+    npm install
+else
+    echo "ERROR: Neither pnpm or npm is installed, please install one of them to procede"
+    exit 1
+fi
 
 echo "Node dependencies installed"
 
