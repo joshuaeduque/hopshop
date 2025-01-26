@@ -37,56 +37,6 @@ cd hopshop
 
 4. Install the backend dependencies in the root of the project.
 
-```bash
-(python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt)
-```
-
-```markdown
-
-
-# About HopShop
-
-HopShop is a frog-focused ecommerce site developed for the CS 4393 User Interfaces semester project. It showcases a frontend built with Next.js/React and a backend using FastAPI.
-
-## Built With
-
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/)  
-- [Python 3](https://www.python.org/)
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/joshuaeduque/hopshop hopshop
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd hopshop
-   ```
-
-3. Install the frontend dependencies:
-
-   ```bash
-   (cd frontend && npm install)
-   ```
-
-4. Install the backend dependencies:
-
-   ```bash
-   (cd backend && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt)
-   ```
-
 ## Usage
 
 ### Starting the Frontend
