@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from sqlmodel import create_engine, Session, SQLModel
 
 # Load environment variables from the .env file at the project's root directory
-load_dotenv(dotenv_path=Path('../.env'))
+load_dotenv()
 
 # Retrieve database credentials from environment variables
 pg_user = os.getenv('PGUSER')
