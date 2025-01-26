@@ -10,12 +10,14 @@ export default function Home() {
           <span className="text-green-900 font-bold">About</span>
         </Link>
         <button onClick={() => {
+          console.log('making api request...');
+
           fetch('http://localhost:8000/neons')
             .then(response => response.json())
             .then((json) => { console.log(json) })
             .finally(() => { console.log('finished') })
             .catch((reason) => { console.error(reason) });
-        }}>Click me</button>
+        }} className="text-red-500">Click me</button>
       </div>
     </div>
   );
