@@ -1,10 +1,15 @@
+#Ignore Visual Studio Code workspace
+.vscode
+
 # Ignore compiled Python files
 __pycache__/
 *.pyc
 
 # Ignore environment folder, NEVER IN YOUR WHOLE CAREER SHOULD YOU 'git push' .env or venv/ silly goose.
 venv/
+venv
 .env
+.venv
 
 # Ignore log files
 *.log
@@ -19,4 +24,3 @@ node_modules/
 coverage/
 dist/
 build/
-

@@ -13,7 +13,7 @@ HopShop is a frog-focused ecommerce site developed for CS 4393 User Interfaces s
 
 ### Prerequisites
 
-HopShop requires Node.js and Python 3 to be installed on your machine.
+HopShop requires Node.js and Python 3 as well as either npm or pnpm to be installed on your machine.
 
 ## Installation
 
@@ -29,135 +29,36 @@ git clone https://github.com/joshuaeduque/hopshop hopshop
 cd hopshop
 ```
 
-3. Install the frontend dependencies:
-
+3. Run the installer script
 ```bash
-(cd frontend && npm install)
+# Make sure the script is executable
+chmod +x install.sh
+./install.sh
 ```
 
-4. Install the backend dependencies in the root of the project.
-
-```bash
-(python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt)
-```
-
-```markdown
-
-
-# About HopShop
-
-HopShop is a frog-focused ecommerce site developed for the CS 4393 User Interfaces semester project. It showcases a frontend built with Next.js/React and a backend using FastAPI.
-
-## Built With
-
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/)  
-- [Python 3](https://www.python.org/)
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/joshuaeduque/hopshop hopshop
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd hopshop
-   ```
-
-3. Install the frontend dependencies:
-
-   ```bash
-   (cd frontend && npm install)
-   ```
-
-4. Install the backend dependencies:
-
-   ```bash
-   (cd backend && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt)
-   ```
+This script checks for a Python virtual environment, creates one if it doesn't exist, and installs dependencies for both the backend and frontend servers.
 
 ## Usage
 
-### Starting the Frontend
+### Starting the backend
 
-1. Navigate to the frontend directory:
+```bash
+# Make sure the script is executable
+chmod +x start_backend.sh
+./start_backend.sh
+```
 
-   ```bash
-   cd frontend
-   ```
+This script checks for the existence of a Python virtual environment, activates it if it exists, and then executes the backend server.
 
-2. Ensure the script is executable:
+### Starting the frontend
 
-   ```bash
-   chmod +x start_front_end_dev.sh
-   ```
+```bash
+# Make sure the script is executable
+chmod +x start_frontend.sh
+./start_frontend.sh
+```
 
-3. Launch the development server:
-
-   ```bash
-   ./start_front_end_dev.sh
-   ```
-
-This will disable Next.js telemetry, check for pnpm or npm, and start the Next.js dev server.
-
-### Starting the Backend
-
-1. Navigate to where `start_backend-api.sh` is located (project root or backend directory):
-
-   ```bash
-   cd backend
-   ```
-
-2. Ensure the script is executable:
-
-   ```bash
-   chmod +x start_backend-api.sh
-   ```
-
-3. Run the script:
-
-   ```bash
-   ./start_backend-api.sh
-   ```
-
-This will set up (or update) a Python virtual environment, install the required dependencies, and start the FastAPI server with uvicorn.
-
-## Explanation of the Scripts
-
-### `start_front_end_dev.sh`
-
-1. Disables Next.js telemetry (using `npx next telemetry disable`).  
-2. Checks for `pnpm`; if found, runs `pnpm run dev`.  
-3. If `pnpm` is not found, checks for `npm`; if found, runs `npm run dev`.  
-4. If neither is found, prints an error message and exits.
-
-###
-
-start_backend-api.sh
-
-1. Checks for a virtual environment folder (
-
-venv
-
-). If it doesn’t exist, creates it with `python3 -m venv venv`.  
-2. Activates the virtual environment.  
-3. If activated, installs dependencies from
-
-requirements.txt
-
- via `pip`.  
-4. Launches the FastAPI app using `uvicorn src.main:app --reload`.
+This script disables Next.js telemetry and executes the frontend server.
 
 ## License
 
