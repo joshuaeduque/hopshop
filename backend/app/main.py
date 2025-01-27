@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from app.db import create_db_and_tables
-from app.routers.neons import router as neon_router
+from db import create_db_and_tables
+from routers.neons import router as neon_router
 
 # Create the FastAPI app
 app = FastAPI()
@@ -35,10 +35,12 @@ async def lifespan(app: FastAPI):
 # Setup API routes
 app.include_router(neon_router)
 
+# Test JSOn response
 @app.get('/')
 async def root():
     return { 'message': 'Hello World' }
 
+# Test image response
 @app.get('/pacman')
 async def pacman():
-    return FileResponse('images/pacman.jpg')
+    return FileResponse('backend/images/pacman.jpg')

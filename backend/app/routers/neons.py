@@ -2,8 +2,8 @@ from fastapi import APIRouter, Query, Depends
 from sqlmodel import select, Session
 from typing import Annotated
 
-from app.db import get_session, SessionDep
-from app.models.neons import Neons
+from db import SessionDep
+from models.neons import Neons
 
 router = APIRouter()
 
