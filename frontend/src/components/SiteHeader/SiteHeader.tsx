@@ -6,7 +6,7 @@ export default function SiteHeader() {
             </div>
             <div className="navbar-center">
                 <div className="flex gap-1">
-                    <input type="text" placeholder="Search" className="input input-bordered w-96" />
+                    <input type="text" placeholder="Search" className="input input-bordered w-auto md:w-96" />
                     <button className="btn btn-ghost btn-circle">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -2,7 +2,7 @@ import SiteHeader from "@/components/SiteHeader/SiteHeader";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col">
       <SiteHeader />
       {/* Product filtering bar */}
       <div className="bg-base-200 px-4 flex">
