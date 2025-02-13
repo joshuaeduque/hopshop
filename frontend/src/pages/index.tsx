@@ -2,7 +2,7 @@ import SiteHeader from "@/components/SiteHeader/SiteHeader";
 
 export default function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-w-max">
       <SiteHeader />
       {/* Categories bar */}
       <div className="bg-base-200 px-4 flex items-center gap-2">
