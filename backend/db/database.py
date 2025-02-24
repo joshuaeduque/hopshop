@@ -1,3 +1,15 @@
+# database.py
+# file path: backend/db/database.py
+# This file defines the database connection and session management.
+#
+"""
+This module defines the database connection and session management.
+
+The module provides a SQLAlchemy engine for connecting to the PostgreSQL database
+and a function for creating a new session for database operations. The session
+is automatically closed when the context is exited.
+
+"""
 import os
 from typing import Annotated
 

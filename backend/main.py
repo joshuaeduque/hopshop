@@ -1,3 +1,10 @@
+# main.py
+# file path: hopshop/backend/main.py
+# This file defines the main application and includes API endpoints and configurations.
+#
+"""
+this module defines the main application and includes API endpoints and configurations.
+"""
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
@@ -27,6 +34,18 @@ app.add_middleware(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    """
+    Context manager for the lifespan of the FastAPI application.
+
+    This function is executed when the application starts up and shuts down.
+    It is used to perform tasks such as creating the database and tables.
+
+    Args:
+        app (FastAPI): The FastAPI application instance.
+
+    Yields:
+        None
+    """
     create_db_and_tables()
     yield
 
@@ -36,8 +55,20 @@ app.include_router(neon_router, prefix=settings.API_V1_STR)
 
 @app.get('/')
 def root():
+    """
+    Root endpoint for the API.
+
+    Returns:
+        dict: A dictionary containing a message.
+    """
     return {'message': 'Hello World'}
 
 @app.get('/pacman')
 def pacman():
+    """
+    Endpoint to serve the pacman image.
+
+    Returns:
+        FileResponse: A FileResponse object containing the pacman image.
+    """
     return FileResponse('images/pacman.jpg')
