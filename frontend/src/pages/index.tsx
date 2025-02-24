@@ -15,11 +15,27 @@ export default function Home() {
     {
       name: 'Tree frog',
       price: 299
+    },
+    {
+      name: 'Basic frog',
+      price: 99
+    },
+    {
+      name: 'Rare frog',
+      price: 599
+    },
+    {
+      name: 'Legendary frog',
+      price: 999
+    },
+    {
+      name: 'Epic frog',
+      price: 9999
     }
   ];
 
   return (
-    <div className="flex flex-col min-w-max">
+    <div className="flex flex-col">
       <SiteHeader />
       <CategoriesBar />
       <div className="p-4 flex flex-wrap gap-4">
