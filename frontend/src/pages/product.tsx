@@ -5,6 +5,7 @@ export default function Product() {
 
     const product = {
         name: 'Crazy Cool Frog Thing',
+        category: 'Pet frogs',
         rating: 5,
         price: 99,
         details: 'This is a crazy cool frog thing, it can do absolutely anything.'
@@ -18,7 +19,7 @@ export default function Product() {
                 <div className="breadcrumbs text-sm">
                     <ul>
                         <li>Products</li>
-                        <li>product_category</li>
+                        <li>{product.category}</li>
                     </ul>
                 </div>
                 <div className="grid grid-cols-2 gap-4 m-2">
