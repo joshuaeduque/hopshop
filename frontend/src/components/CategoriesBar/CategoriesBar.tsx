@@ -1,6 +1,6 @@
 export default function CategoriesBar() {
     return (
-        <div className="bg-base-200 px-4 flex items-center gap-2">
+        <div className="bg-base-200 px-4 flex overflow-x-auto items-center gap-2">
             <button className="btn btn-square btn-ghost">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
