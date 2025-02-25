@@ -21,13 +21,14 @@ export default function Product() {
                         <p className="text-3xl">product_name</p>
                         <p>product_rating</p>
                         <hr className="border-neutral" />
-                        <p className="text-2xl">$product_price</p>
+                        <p className="text-2xl my-2">$product_price</p>
+                        <p className="font-bold">Product details</p>
+                        <p>product_details</p>
                         <div className="my-4">
-                            <p className="font-bold">Product details</p>
-                        </div>
-                        <div>
-                            <button className="btn">Add to cart</button>
-                        </div>
+                                <label className="label-text font-bold" htmlFor="quantity">QTY:</label>
+                                <input defaultValue={0} min={0} className="input input-bordered mx-4 w-16" type="number" name="quantity" id="quantity" />
+                                <button className="btn">Add to cart</button>
+                            </div>
                     </div>
                 </div>
             </div>
