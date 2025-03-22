@@ -16,10 +16,7 @@ from typing import Annotated
 from fastapi import Depends
 from dotenv import load_dotenv
 from sqlmodel import create_engine, Session, SQLModel
-from backend.db.models import Neon, User  # noqa: F401
-# Ensure that the models are imported to register them with SQLModel
-# This is important for the create_db_and_tables function to work correctly.
-# from backend.db.models import Neon, User  # noqa: F401
+
 
 # Load environment variables from the .env file at the project's root directory
 load_dotenv()
@@ -29,14 +26,15 @@ pg_user = os.getenv('PGUSER')
 pg_password = os.getenv('PGPASSWORD')
 pg_host = os.getenv('PGHOST')
 pg_database = os.getenv('PGDATABASE')
-pg_schema = os.getenv('PGSCHEMA')  # Retrieve the schema from the environment variables
+pg_schema = os.getenv('PGSCHEMA', 'public')  # Retrieve the schema from the environment variables
 
 # Create the PostgreSQL connection url
 postgresql_url = f'postgresql://{pg_user}:{pg_password}@{pg_host}/{pg_database}?sslmode=disable'
 
 # Create the database engine
 # Add the schema to the engine's URL
-engine = create_engine(postgresql_url, connect_args={'options': f'-csearch_path={pg_schema}'})
+search_path = f'{pg_schema},public'  # Set the search path to include the specified schema and public to ensure tables are created in the correct schema
+engine = create_engine(postgresql_url, connect_args={'options': f'-csearch_path={search_path}'})
 
 def get_session():
     """
