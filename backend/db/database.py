@@ -16,6 +16,10 @@ from typing import Annotated
 from fastapi import Depends
 from dotenv import load_dotenv
 from sqlmodel import create_engine, Session, SQLModel
+from backend.db.models import Neon, User  # noqa: F401
+# Ensure that the models are imported to register them with SQLModel
+# This is important for the create_db_and_tables function to work correctly.
+# from backend.db.models import Neon, User  # noqa: F401
 
 # Load environment variables from the .env file at the project's root directory
 load_dotenv()
