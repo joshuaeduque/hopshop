@@ -5,9 +5,9 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List
 from sqlmodel import Session
-from db.database import get_session
-from services.neon_service import get_all_neons
-from schemas.neon import NeonRead
+from ..db.database import get_session
+from ..services.neon_service import get_all_neons
+from ..schemas.neon import NeonRead
 
 router = APIRouter()
 # TODO: use this as boiler plate for other routers

@@ -22,4 +22,4 @@ fi
 echo "Virtual environment activated"
 
 # Execute the backend
-fastapi dev ./backend/app/main.py
+fastapi dev ./backend/main.py

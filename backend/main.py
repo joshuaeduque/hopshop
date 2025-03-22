@@ -9,9 +9,9 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from db.database import create_db_and_tables
-from api.neons import router as neon_router
-from core.config import settings
+from .db.database import create_db_and_tables
+from .api.neons import router as neon_router
+from .core.config import settings
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
