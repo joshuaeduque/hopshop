@@ -29,30 +29,42 @@ export default function Search() {
         <div>
             <SiteHeader />
             <CategoriesBar />
-            <div className="flex flex-col gap-4">
-            <div className="flex flex-wrap gap-4 justify-center">
-                {products.map((product) => {
-                    return (
-                        <div className="card bg-base-100 h-60 w-60 shadow-xl">
-                            <figure>
-                                <img src="/FROG_GANG.jpg" />
-                            </figure>
-                            <div className="card-body">
-                                <p className="card-title">{product.name}</p>
-                                <p>${product.price / 100}</p>
-                            </div>
-                        </div>
-                    )
-                })}
-            </div>
-            <div className="flex justify-center">
-                <div className="join">
-                    <button className="join-item btn">1</button>
-                    <button className="join-item btn">2</button>
-                    <button className="join-item btn">3</button>
-                    <button className="join-item btn">4</button>
+
+            <div className="flex justify-end">
+            <div className="dropdown dropdown-end z-10">
+                    <div tabIndex={0} role="button" className="btn btn-sm m-1">Sort by</div>
+                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                        <li><a>Price: Low to High</a></li>
+                        <li><a>Price: High to Low</a></li>
+                    </ul>
                 </div>
             </div>
+
+            <div className="flex flex-col gap-4">
+                <div className="flex flex-wrap gap-4 justify-center mx-4">
+                    {products.map((product) => {
+                        return (
+                            <div className="card bg-base-100 h-60 w-60 shadow-xl">
+                                <figure>
+                                    <img src="/FROG_GANG.jpg" />
+                                </figure>
+                                <div className="card-body">
+                                    <p className="card-title">{product.name}</p>
+                                    <p>${product.price / 100}</p>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+
+                <div className="flex justify-center">
+                    <div className="join">
+                        <button className="join-item btn">1</button>
+                        <button className="join-item btn">2</button>
+                        <button className="join-item btn">3</button>
+                        <button className="join-item btn">4</button>
+                    </div>
+                </div>
             </div>
         </div>
     );
