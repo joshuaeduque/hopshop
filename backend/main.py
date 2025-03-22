@@ -11,6 +11,7 @@ from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from backend.db.database import create_db_and_tables
 from backend.api.neons import router as neon_router
+from backend.api.users import router as user_router
 from backend.core.config import settings
 
 app = FastAPI(
@@ -52,6 +53,7 @@ async def lifespan(app: FastAPI):
 app.router.lifespan_context = lifespan
 
 app.include_router(neon_router, prefix=settings.API_V1_STR)
+app.include_router(user_router, prefix=settings.API_V1_STR)
 
 @app.get('/')
 def root():
