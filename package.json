@@ -1,5 +1,6 @@
 {
 	"devDependencies": {
+		"daisyui": "^5.0.9",
 		"eslint-plugin-react-hooks": "^5.2.0"
 	}
 }
