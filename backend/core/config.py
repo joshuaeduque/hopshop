@@ -6,9 +6,10 @@
 This module defines the configuration settings for the application.
 """
 
-from pydantic_settings import BaseSettings
+
 from typing import List, Union
 from pydantic import field_validator
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     """
@@ -21,6 +22,12 @@ class Settings(BaseSettings):
         VERSION (str): The version of the project.
         BACKEND_CORS_ORIGINS (List[str]): A list of allowed origins for CORS.
     """
+    PGUSER: str
+    PGPASSWORD: str
+    PGHOST: str
+    PGDATABASE: str
+    PGSCHEMA: str
+    
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "HopShop API"
     DESCRIPTION: str = "A frog-focused ecommerce API"
@@ -61,6 +68,7 @@ class Settings(BaseSettings):
         """
         case_sensitive = True
         env_file = ".env"
+        extra = "allow"
 
 def get_settings() -> Settings:
     """
