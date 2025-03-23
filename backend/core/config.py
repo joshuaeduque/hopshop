@@ -7,8 +7,9 @@ This module defines the configuration settings for the application.
 """
 
 
+import os
 from typing import List, Union
-from pydantic import field_validator
+from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -27,7 +28,7 @@ class Settings(BaseSettings):
     PGHOST: str
     PGDATABASE: str
     PGSCHEMA: str
-    
+    SECRET_KEY: str = Field(default="a-very-secret-key-that-should-be-in-env")
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "HopShop API"
     DESCRIPTION: str = "A frog-focused ecommerce API"
@@ -77,6 +78,7 @@ def get_settings() -> Settings:
     Returns:
         Settings: The settings for the application.
     """
+    os.getenv("SECRET_KEY", "a-very-secret-key-that-should-be-in-env")
     return Settings()
 
 settings = get_settings()

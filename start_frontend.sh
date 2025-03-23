@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-cd ./frontend
+cd ./frontend || exit
+
+# Kill any processes on development ports
+for port in 3000 9229 9230; do
+    pid=$(lsof -t -i:$port 2>/dev/null)
+    if [ -n "$pid" ]; then
+        echo "Killing process $pid on port $port"
+        kill -9 "$pid" 2>/dev/null
+    fi
+done
 
 # Disable Next.js telemetry
 npx next telemetry disable

@@ -27,6 +27,7 @@ pg_password = os.getenv('PGPASSWORD')
 pg_host = os.getenv('PGHOST')
 pg_database = os.getenv('PGDATABASE')
 pg_schema = os.getenv('PGSCHEMA', 'public')  # Retrieve the schema from the environment variables
+SECRET_KEY = os.getenv("SECRET_KEY", "a-very-secret-key-that-should-be-in-env")
 
 # Create the PostgreSQL connection url
 postgresql_url = f'postgresql://{pg_user}:{pg_password}@{pg_host}/{pg_database}?sslmode=disable'
