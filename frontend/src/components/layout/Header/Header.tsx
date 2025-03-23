@@ -83,10 +83,10 @@ export default function Header({ className = "" }: HeaderProps) {
           
           {!session && !loading ? (
             <>
-              <button onClick={() => setIsLoginModalOpen(true)} className="btn btn-ghost">
+              <Link href="/login" className="btn btn-primary">
                 <span className="hidden md:inline">Login</span>
                 <span className="md:hidden">Login</span>
-              </button>
+              </Link>
               <Link href="/register" className="btn btn-primary">
                 <span className="hidden md:inline">Register</span>
                 <span className="md:hidden">Register</span>

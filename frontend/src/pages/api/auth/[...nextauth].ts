@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
         
         try {
           const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/auth/login`,
+            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -28,7 +28,23 @@ export const authOptions: NextAuthOptions = {
             }
           );
 
-          const data = await response.json();
+          // Debug: Log the status and raw response text
+          const responseText = await response.text();
+          console.log("Response status:", response.status);
+          console.log("Raw response:", responseText);
+          
+          // Only try parsing if we have content
+          let data;
+          if (responseText) {
+            try {
+              data = JSON.parse(responseText);
+            } catch (parseError) {
+              console.error("JSON parse error:", parseError);
+              return null;
+            }
+          } else {
+            return null;
+          }
           
           if (!response.ok) {
             return null;
