@@ -70,6 +70,7 @@ class Settings(BaseSettings):
         case_sensitive = True
         env_file = ".env"
         extra = "allow"
+        extra = "allow"
 
 def get_settings() -> Settings:
     """
