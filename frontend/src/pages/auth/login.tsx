@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { FaLock, FaUser } from "react-icons/fa";
+import { FaLock, FaUser, FaGoogle, FaGithub } from "react-icons/fa";
 import Link from "next/link";
 
 export default function Login() {
@@ -45,17 +45,44 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200">
-      <div className="card w-full max-w-sm bg-base-100 shadow-xl">
+      <div className="card w-full max-w-md bg-base-100 shadow-xl">
         <div className="card-body">
           <h3 className="font-bold text-2xl text-center">Login to HopShop</h3>
-          <form onSubmit={handleSubmit} className="py-4">
+          
+          {/* OAuth Provider Buttons */}
+          <div className="py-4">
+            <div className="text-center mb-4">
+              <span className="text-sm">Login with</span>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <button 
+                onClick={() => signIn("google", { callbackUrl: router.query.callbackUrl as string || "/" })}
+                className="btn btn-outline gap-2"
+              >
+                <FaGoogle className="w-5 h-5" />
+                Google
+              </button>
+              <button 
+                onClick={() => signIn("github", { callbackUrl: router.query.callbackUrl as string || "/" })}
+                className="btn btn-outline gap-2"
+              >
+                <FaGithub className="w-5 h-5" />
+                GitHub
+              </button>
+            </div>
+          </div>
+          
+          <div className="divider">OR</div>
+          
+          {/* Credentials Login Form */}
+          <form onSubmit={handleSubmit} className="py-2">
             {error && <div className="alert alert-error mb-4">{error}</div>}
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Username</span>
               </label>
               <div className="input-group">
-                <span className=" px-4 pb-4 flex items-center">
+                <span className="px-4 pb-4 flex items-center">
                   <FaUser className="w-4 h-4" />
                 </span>
                 <input 
@@ -72,7 +99,7 @@ export default function Login() {
                 <span className="label-text">Password</span>
               </label>
               <div className="input-group">
-                <span className=" px-4 pb-4 flex items-center">
+                <span className="px-4 pb-4 flex items-center">
                   <FaLock className="w-4 h-4" />
                 </span>
                 <input 
