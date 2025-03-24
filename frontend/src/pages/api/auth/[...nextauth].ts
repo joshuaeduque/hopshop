@@ -1,104 +1,57 @@
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import type { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import GithubProvider from "next-auth/providers/github";
 
 export const authOptions: NextAuthOptions = {
+  // Configure one or more authentication providers
   providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" }
-      },
-      async authorize(credentials) {
-        if (!credentials?.username || !credentials?.password) {
-          return null;
-        }
-        
-        try {
-          const response = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/v1/auth/login`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                username: credentials.username,
-                password: credentials.password,
-              }),
-            }
-          );
-
-          // Debug: Log the status and raw response text
-          const responseText = await response.text();
-          console.log("Response status:", response.status);
-          console.log("Raw response:", responseText);
-          
-          // Only try parsing if we have content
-          let data;
-          if (responseText) {
-            try {
-              data = JSON.parse(responseText);
-            } catch (parseError) {
-              console.error("JSON parse error:", parseError);
-              return null;
-            }
-          } else {
-            return null;
-          }
-          
-          if (!response.ok) {
-            return null;
-          }
-          
-          // Return user data and token to store in session
-          return {
-            id: data.user.id.toString(),
-            name: data.user.username,
-            email: data.user.email,
-            accessToken: data.access_token
-          };
-        } catch (error) {
-          console.error("Auth error:", error);
-          return null;
-        }
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID!,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: "consent",
+          access_type: "offline",
+          response_type: "code",
+        },
       },
     }),
+    GithubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID!,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+    }),
   ],
+  pages: {
+    signIn: "/auth/signin",
+    signOut: "/auth/signout",
+    error: "/auth/error",
+    verifyRequest: "/auth/verify-request",
+    newUser: undefined,
+  },
   callbacks: {
-    async jwt({ token, user }) {
-      // Initial sign in
-      if (user) {
-        token.accessToken = user.accessToken;
-        token.id = user.id;
+    async session({ session, token }) {
+      // Add properties to session
+      session.accessToken = token.accessToken;
+      session.user.id = token.sub!;
+      session.user.email = token.email!;
+      session.user.name = token.name!;
+      return session;
+    },
+    async jwt({ token, account }) {
+      // Persist the OAuth access_token to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token;
       }
       return token;
     },
-    async session({ session, token }) {
-      // Send properties to the client
-      if (session.user) {
-        session.user.id = token.id as string;
-        session.accessToken = token.accessToken as string;
+    async signIn({ account, profile }) {
+      if (account?.provider === "google") {
+        return profile?.email &&profile?.email?.endsWith("@gmail.com") || false;
       }
-      return session;
+      return true; // For other providers, allow sign-in
     },
   },
-  pages: {
-    signIn: "/auth/login", // Custom login page
-  },
-  session: {
-    strategy: "jwt",
-    maxAge: 30 * 24 * 60 * 60, // 30 days
-  },
+  secret: process.env.NEXTAUTH_SECRET || process.env.SECRET_KEY,
 };
 
-const handler = NextAuth(authOptions);
-export default handler;
-export { handler as GET, handler as POST };
-// This file handles authentication using NextAuth.js with a custom credentials provider.
-// It defines the authentication options, including the login endpoint, JWT handling, and session management.
-// The `authorize` function sends a POST request to the backend with the user's credentials.
-// If successful, it returns the user data and access token.
-// The `jwt` and `session` callbacks manage the JWT token and session data.
-// The `signIn` page is set to a custom login page.
-// The handler is exported for use in API routes, allowing NextAuth.js to handle authentication requests.
-// The `GET` and `POST` exports allow the handler to respond to both GET and POST requests.
+export default NextAuth(authOptions);
