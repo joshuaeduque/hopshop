@@ -32,7 +32,7 @@ export default function Home() {
             {products.map((product, i) => (
               <div key={i} className="card bg-base-200 h-64 shadow-sm">
                 <figure>
-                  <img src={product.src} alt="" />
+                  <img src={product.src} alt={product.name} />
                 </figure>
                 <div className="card-body">
                   <p className="card-title">{product.name}</p>
@@ -63,7 +63,7 @@ export default function Home() {
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet inventore totam iusto vel aliquam molestias, voluptates repellat sapiente tempora sequi saepe nemo autem accusantium non dicta suscipit eius ipsum nostrum!</p>
           </div>
           <div className="flex gap-4 justify-end lg:items-center">
-            <input className="input input-neutral input-sm lg:flex-grow" type="text" placeholder="example@email.com" />
+            <input className="input input-sm bg-base-200 lg:flex-grow" type="text" placeholder="example@email.com" />
             <button className="btn btn-sm px-8">Subscribe</button>
           </div>
         </div>
