@@ -4,7 +4,7 @@ export default function Header() {
             <div className="flex flex-col gap-4">
                 <div className="grid grid-rows-2 items-center lg:grid-rows-none lg:grid-cols-2">
                     <img className="w-16 invert" src="next.svg" alt="Website logo" />
-                    <div className="flex flex-row gap-4">
+                    <div className="flex flex-row gap-1 lg:gap-4">
                         <input className="input input-sm bg-base-200 flex-grow" type="text" placeholder="Search..." />
                         <button className="btn btn-sm btn-square">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">

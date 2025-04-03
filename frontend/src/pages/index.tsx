@@ -21,7 +21,7 @@ export default function Home() {
       <div className="px-[10%] py-8">
         <div className="border flex justify-center items-center bg-cover bg-top h-64" style={{ backgroundImage: "url('/hero-frog.jpg')" }}>
           <div className="flex flex-col items-center gap-4">
-            <p className="font-bold text-white">Tagline describing your e-shop</p>
+            <p className="font-medium text-white">Tagline describing your e-shop</p>
             <button className="btn text-white btn-success btn-sm w-fit">Shop Now</button>
           </div>
         </div>
@@ -29,7 +29,7 @@ export default function Home() {
       <hr />
       <div className="px-[10%] py-4">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-2xl">Featured Products</p>
+          <p className="font-medium text-2xl">Featured Products</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {products.map((product, i) => (
               <ProductCard id={i.toString()} key={i} name={product.name} imageSrc={product.src} imageAlt={product.name} />
@@ -41,12 +41,12 @@ export default function Home() {
       <div className="px-[10%] py-4">
         <div className="grid grid-cols=[1fr_auto] lg:grid-rows-none lg:grid-cols-2 gap-4 lg:gap-[25%]">
           <div>
-            <p className="font-bold text-2xl">Newsletter</p>
+            <p className="font-medium text-2xl">Newsletter</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet inventore totam iusto vel aliquam molestias, voluptates repellat sapiente tempora sequi saepe nemo autem accusantium non dicta suscipit eius ipsum nostrum!</p>
           </div>
           <div className="flex gap-4 justify-end lg:items-center">
             <input className="input input-sm bg-base-200 lg:flex-grow" type="text" placeholder="example@email.com" />
-            <button className="btn btn-sm px-8">Subscribe</button>
+            <button className="btn btn-sm">Subscribe</button>
           </div>
         </div>
       </div>
