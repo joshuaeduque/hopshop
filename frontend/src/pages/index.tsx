@@ -34,6 +34,13 @@ export default function Home() {
               </figure>
               <div className="card-body">
                 <p className="card-title">{product.name}</p>
+                <div className="rating rating-half">
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
+                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+                </div>
                 <p>$999</p>
               </div>
             </div>
