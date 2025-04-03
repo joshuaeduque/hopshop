@@ -26,6 +26,8 @@ export default function Home() {
       </div>
       <hr />
       <div className="px-[10%] py-4">
+        <div className="flex flex-col gap-4">
+        <p className="font-bold text-2xl">Featured Products</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {products.map((product) => (
             <div className="card bg-base-100 h-64 shadow-sm">
@@ -45,6 +47,7 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
       <hr />
