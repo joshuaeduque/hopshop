@@ -1,4 +1,5 @@
 import Header from "@/components/Header/header";
+import ProductCard from "@/components/ProductCard/ProductCard";
 
 export default function Home() {
 
@@ -30,27 +31,7 @@ export default function Home() {
           <p className="font-bold text-2xl">Featured Products</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {products.map((product, i) => (
-              <div key={i} className="card bg-base-200 h-80 shadow-sm">
-                <figure>
-                  <img src={product.src} alt={product.name} />
-                </figure>
-                <div className="card-body">
-                  <p className="card-title">{product.name}</p>
-                  <div className="rating rating-sm rating-half">
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="0.5 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="1 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="1.5 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="2 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="2.5 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="3 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="3.5 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="4 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="4.5 star" />
-                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="5 star" defaultChecked />
-                  </div>
-                  <p>$999</p>
-                </div>
-              </div>
+              <ProductCard id={i.toString()} key={i} name={product.name} imageSrc={product.src} imageAlt={product.name} />
             ))}
           </div>
         </div>
