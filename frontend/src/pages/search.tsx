@@ -1,4 +1,5 @@
 import Header from "@/components/Header/header";
+import Footer from "@/components/Footer/footer";
 import ProductCard from "@/components/ProductCard/ProductCard";
 
 export default function Search() {
@@ -34,6 +35,8 @@ export default function Search() {
                     <button className="join-item btn">»</button>
                 </div>
             </div>
+            <hr />
+            <Footer />
         </>
     );
 }
