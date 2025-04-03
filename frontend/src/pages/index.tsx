@@ -30,7 +30,7 @@ export default function Home() {
           <p className="font-bold text-2xl">Featured Products</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {products.map((product, i) => (
-              <div key={i} className="card bg-base-200 h-64 shadow-sm">
+              <div key={i} className="card bg-base-200 h-80 shadow-sm">
                 <figure>
                   <img src={product.src} alt={product.name} />
                 </figure>
