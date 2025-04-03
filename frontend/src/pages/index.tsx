@@ -27,27 +27,32 @@ export default function Home() {
       <hr />
       <div className="px-[10%] py-4">
         <div className="flex flex-col gap-4">
-        <p className="font-bold text-2xl">Featured Products</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <div className="card bg-base-100 h-64 shadow-sm">
-              <figure>
-                <img src={product.src} alt="" />
-              </figure>
-              <div className="card-body">
-                <p className="card-title">{product.name}</p>
-                <div className="rating rating-half">
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="1 star" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="2 star" defaultChecked />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="3 star" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="4 star" />
-                  <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" aria-label="5 star" />
+          <p className="font-bold text-2xl">Featured Products</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {products.map((product, i) => (
+              <div key={i} className="card bg-base-200 h-64 shadow-sm">
+                <figure>
+                  <img src={product.src} alt="" />
+                </figure>
+                <div className="card-body">
+                  <p className="card-title">{product.name}</p>
+                  <div className="rating rating-sm rating-half">
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="0.5 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="1 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="1.5 star" defaultChecked />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="2 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="2.5 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="3 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="3.5 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="4 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-1 bg-orange-400" aria-label="4.5 star" />
+                    <input type="radio" name={`rating-${i}`} className="mask mask-star-2 mask-half-2 bg-orange-400" aria-label="5 star" />
+                  </div>
+                  <p>$999</p>
                 </div>
-                <p>$999</p>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
         </div>
       </div>
       <hr />
