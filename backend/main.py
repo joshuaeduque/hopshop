@@ -6,7 +6,9 @@
 this module defines the main application and includes API endpoints and configurations.
 """
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+import os
+from pathlib import Path
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from backend.db.database import create_db_and_tables
@@ -67,12 +69,13 @@ def root():
     """
     return {'message': 'Hello World'}
 
+# Use Path for cross-platform compatibility
+IMAGES_DIR = Path(__file__).parent / "images"
+
 @app.get('/pacman')
 def pacman():
-    """
-    Endpoint to serve the pacman image.
-
-    Returns:
-        FileResponse: A FileResponse object containing the pacman image.
-    """
-    return FileResponse('images/pacman.jpg')
+    """Endpoint to serve the pacman image."""
+    image_path = IMAGES_DIR / "pacman.jpg"
+    if not image_path.exists():
+        raise HTTPException(status_code=404, detail="Image not found")
+    return FileResponse(str(image_path))

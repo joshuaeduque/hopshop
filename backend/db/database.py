@@ -12,6 +12,7 @@ is automatically closed when the context is exited.
 """
 import os
 from typing import Annotated
+from urllib.parse import quote_plus
 
 from fastapi import Depends
 from dotenv import load_dotenv
@@ -19,18 +20,18 @@ from sqlmodel import create_engine, Session, SQLModel
 
 
 # Load environment variables from the .env file at the project's root directory
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 
 # Retrieve database credentials from environment variables
 pg_user = os.getenv('PGUSER')
-pg_password = os.getenv('PGPASSWORD')
+pg_password = quote_plus(os.getenv('PGPASSWORD', ''))  # URL encode password
 pg_host = os.getenv('PGHOST')
 pg_database = os.getenv('PGDATABASE')
 pg_schema = os.getenv('PGSCHEMA', 'public')  # Retrieve the schema from the environment variables
-SECRET_KEY = os.getenv("SECRET_KEY", "a-very-secret-key-that-should-be-in-env")
+NEXTAUTH_SECRET = os.getenv("SECRET_KEY", "a-very-secret-key-that-should-be-in-env")
 
-# Create the PostgreSQL connection url
-postgresql_url = f'postgresql://{pg_user}:{pg_password}@{pg_host}/{pg_database}?sslmode=disable'
+# Create the PostgreSQL connection url (Windows-friendly)
+postgresql_url = f'postgresql://{pg_user}:{pg_password}@{pg_host}/{pg_database}'
 
 # Create the database engine
 # Add the schema to the engine's URL

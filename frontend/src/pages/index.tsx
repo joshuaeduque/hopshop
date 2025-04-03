@@ -59,7 +59,7 @@ const FEATURED_PRODUCTS = [
 ];
 
 const CATEGORIES = [
-  { id: 1, name: "Tree Frogs", count: 25, image: "/categories/tree-frogs.jpg" }, // Updated path
+  { id: 1, name: "Tree Frogs", count: 25, image: "/categories/green-frogs.jpg" }, // Updated path
   { id: 2, name: "Aquatic Frogs", count: 18, image: "/categories/aquatic-frogs.jpg" }, // Updated path
   { id: 3, name: "Dart Frogs", count: 12, image: "/categories/dart-frogs.jpg" }, // Updated path
   { id: 4, name: "Toads", count: 15, image: "/categories/toads.jpg" } // Updated path
