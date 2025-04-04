@@ -4,13 +4,14 @@ import "@/styles/globals.css";
 
 function MyApp({ 
   Component, 
-  pageProps: { session, ...pageProps } }: AppProps) {
+  pageProps: { session, ...pageProps } 
+}: AppProps) {
   return (
     <SessionProvider 
-    session={session} 
-    basePath="/" 
-    refetchInterval={5 * 60} 
-    refetchOnWindowFocus={true} >
+      session={session}
+      refetchInterval={5 * 60} 
+      refetchOnWindowFocus={true}
+    >
       <Component {...pageProps} />
     </SessionProvider>
   );

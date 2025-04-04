@@ -4,7 +4,10 @@
 #
 
 from typing import Optional
-from sqlmodel import SQLModel, Field
+
+from sqlmodel import Field, SQLModel
+
+
 # TODO: use this as boiler plate for other database models
 class Neon(SQLModel, table=True):
     """

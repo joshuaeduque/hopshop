@@ -2,5 +2,8 @@
 	"devDependencies": {
 		"daisyui": "^5.0.9",
 		"eslint-plugin-react-hooks": "^5.2.0"
+	},
+	"scripts": {
+		"format:imports": "isort backend/"
 	}
 }

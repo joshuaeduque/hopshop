@@ -1,20 +1,30 @@
+import Link from 'next/link';
+import FallbackImage from '@/components/FallbackImage/FallbackImage';
+
 interface ProductCardProps {
-    imageSrc?: string,
-    name?: string,
-    price?: string
+    id: string,
+    imageSrc: string,
+    name: string,
+    price: number
 }
 
-export default function ProductCard({imageSrc, name, price} : ProductCardProps) {
+export default function ProductCard({id, imageSrc, name, price}: ProductCardProps) {
     return (
-        <div className="card bg-base-100 h-60 w-60 shadow-xl">
-            <figure>
-                <img src={imageSrc ? imageSrc : "/FROG_GANG.jpg"} />
+        <Link href={`/products/${id}`} className="card bg-base-100 shadow-xl">
+            <figure className="relative h-48">
+                <FallbackImage
+                    src={imageSrc}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                    fallbackQuery={name}
+                />
             </figure>
             <div className="card-body">
-                <p className="card-title">{name ? name : 'Product name'}</p>
-                <p>{price ? price : '$999'}</p>
+                <p className="card-title">{name}</p>
+                <p>${price.toFixed(2)}</p>
             </div>
-        </div>
+        </Link>
     );
 }
 

@@ -3,7 +3,7 @@ import { fetchWithAuth } from "@/utils/api";
 
 export async function getUsers(offset: number, limit: number): Promise<UserRead[]> {
     const response = await fetchWithAuth(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/users?offset=${offset}&limit=${limit}`
+      `${process.env.NEXT_PUBLIC_API_URL}/users?offset=${offset}&limit=${limit}`
     );
 
     if (!response.ok) {
