@@ -8,8 +8,10 @@ This module defines the configuration settings for the application.
 
 
 from typing import List, Union
+
 from pydantic import field_validator
 from pydantic_settings import BaseSettings
+
 
 class Settings(BaseSettings):
     """

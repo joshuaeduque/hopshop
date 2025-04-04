@@ -14,10 +14,9 @@ import os
 from typing import Annotated
 from urllib.parse import quote_plus
 
-from fastapi import Depends
 from dotenv import load_dotenv
-from sqlmodel import create_engine, Session, SQLModel
-
+from fastapi import Depends
+from sqlmodel import Session, SQLModel, create_engine
 
 # Load environment variables from the .env file at the project's root directory
 load_dotenv(dotenv_path=".env")

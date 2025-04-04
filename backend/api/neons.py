@@ -2,12 +2,14 @@
 # file path: hopshop/backend/api/neons.py
 # This file defines the API endpoints for managing neon objects.
 #
-from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List
+
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session
+
 from backend.db.database import get_session
-from backend.services.neon_service import get_all_neons
 from backend.schemas.neon import NeonRead
+from backend.services.neon_service import get_all_neons
 
 router = APIRouter()
 # TODO: use this as boiler plate for other routers

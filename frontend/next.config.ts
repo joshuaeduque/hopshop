@@ -6,10 +6,8 @@ const nextConfig: NextConfig = {
     domains: [
       'lh3.googleusercontent.com',  // For Google OAuth profile pictures
       'placehold.co',              // For placeholder images
-      'picsum.photos',             // For random placeholder images
-      'images.unsplash.com',       // For Unsplash images
+      'picsum.photos'             // For random placeholder images
     ],
-    
   },
   env: {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,

@@ -1,5 +1,5 @@
-from .neon_service import get_all_neons
 from ..db.models.neon import Neon
+from .neon_service import get_all_neons
 
 __all__ = [
     "get_all_neons",

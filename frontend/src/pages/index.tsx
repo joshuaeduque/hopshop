@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import { FaArrowRight, FaStar, FaShoppingCart } from "react-icons/fa";
+import { getProductImages } from "@/data/products";
 
 // Mock product data - would come from an API in a real app
 const FEATURED_PRODUCTS = [
@@ -67,14 +68,22 @@ const CATEGORIES = [
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  
+  const [products, setProducts] = useState<{
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    category: string;
+    rating: number;
+  }[]>([]);
+
   useEffect(() => {
-    // Simulate data loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-    
-    return () => clearTimeout(timer);
+    async function loadProducts() {
+      const productsWithImages = await getProductImages();
+      setProducts(productsWithImages);
+      setIsLoading(false); // Add this line to set loading state to false after products are loaded
+    }
+    loadProducts();
   }, []);
 
   return (
@@ -186,7 +195,7 @@ export default function Home() {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {FEATURED_PRODUCTS.map(product => (
+                {products.map(product => (
                   <div key={product.id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
                     <figure className="relative">
                       <Image 

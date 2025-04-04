@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
 
 from fastapi import APIRouter, HTTPException, status
+from jose import jwt
+from passlib.context import CryptContext
 from pydantic import BaseModel
 from sqlmodel import select
-from passlib.context import CryptContext
-from jose import jwt
 
+from backend.core.config import settings
 from backend.db.database import SessionDep
 from backend.db.models.user import User
-from backend.core.config import settings
 
 # Password hashing settings
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
