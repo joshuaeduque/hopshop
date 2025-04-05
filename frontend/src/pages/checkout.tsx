@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/footer";
 import Header from "@/components/Header/header";
 
 export default function Checkout() {
@@ -12,7 +13,7 @@ export default function Checkout() {
         <>
             <Header />
             <div className="px-[10%] py-4">
-                <div className="grid grid-rows-2 lg:grid-rows-none lg:grid-cols-[2fr_1fr] gap-4">
+                <div className="grid grid-rows-[1fr_auto] lg:grid-rows-none lg:grid-cols-[2fr_1fr] gap-4">
                     <div className="flex flex-col gap-4">
                         <p className="font-medium text-xl">Shopping Cart</p>
                         {products.map((product, i) => (
@@ -102,6 +103,8 @@ export default function Checkout() {
                     </div>
                 </div>
             </div>
+            <hr />
+            <Footer />
         </>
     );
 }
