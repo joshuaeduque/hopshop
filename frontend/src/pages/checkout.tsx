@@ -5,7 +5,7 @@ export default function Checkout() {
     const products = [
         { name: 'Aquatic Frog', src: '/products/aquatic-frog.jpg', description: 'A cool crazy awesome aquatic frog that can do absolutely anything.', price: 999, count: 1 },
         { name: 'Glass Frog', src: '/products/glass-frog.jpg', description: 'Not gunna lie, this frog probably has depression.', price: 25, count: 1 },
-        { name: 'Green Tree Frog', src: '/products/green-tree-frog.jpg', description: 'Not much to say about this one', price: 12, count: 1 }
+        { name: 'Green Tree Frog', src: '/products/green-tree-frog.jpg', description: 'Not much to say about this one.', price: 12, count: 1 }
     ];
 
     return (
@@ -19,7 +19,7 @@ export default function Checkout() {
                             <div className="bg-base-200 rounded p-4 grid gap-4 items-center grid-rows-[1fr_auto] lg:grid-rows-none lg:grid-cols-2">
                                 <div className="flex flex-row gap-4">
                                     <div className="w-32 h-32 aspect-square flex content-center justify-center">
-                                        <img className="object-scale-down" src={product.src} alt="Product" />
+                                        <img className="object-cover rounded" src={product.src} alt="Product" />
                                     </div>
                                     <div className="grid grid-rows-3">
                                         <p className="self-end font-medium">{product.name}</p>
@@ -75,12 +75,30 @@ export default function Checkout() {
                         </div>
                         <hr />
                         <div className="flex flex-row gap-4">
-                            <button className="btn btn-primary text-white w-48">Pay now</button>
-                            <button className="btn w-48 ">Cancel</button>
+                            <button className="btn btn-sm btn-primary text-white w-32">Pay now</button>
+                            <button className="btn btn-sm w-32 ">Cancel</button>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-4">
                         <p className="font-medium text-2xl">Order Summary</p>
+                        <hr />
+                        <div className="grid grid-cols-2">
+                            <div className="flex flex-col gap-4">
+                                <p>SUBTOTAL</p>
+                                <p>SHIPPING</p>
+                                <p>TAXES</p>
+                            </div>
+                            <div className="flex flex-col items-end gap-4">
+                                <p>$600</p>
+                                <p>FREE</p>
+                                <p>$13</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="grid grid-cols-2 font-medium text-2xl">
+                            <p>TOTAL</p>
+                            <p className="place-self-end">$613</p>
+                        </div>
                     </div>
                 </div>
             </div>
