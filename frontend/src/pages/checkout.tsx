@@ -19,7 +19,7 @@ export default function Checkout() {
                             <div className="bg-base-200 rounded p-4 grid gap-4 items-center grid-rows-[1fr_auto] lg:grid-rows-none lg:grid-cols-2">
                                 <div className="flex flex-row gap-4">
                                     <div className="w-32 h-32 aspect-square flex content-center justify-center">
-                                        <img className="object-cover rounded" src={product.src} alt="Product" />
+                                        <img className="object-cover rounded w-full" src={product.src} alt="Product" />
                                     </div>
                                     <div className="grid grid-rows-3">
                                         <p className="self-end font-medium">{product.name}</p>
