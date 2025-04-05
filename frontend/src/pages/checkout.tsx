@@ -61,6 +61,23 @@ export default function Checkout() {
                         </div>
                         <hr />
                         <p className="font-medium text-xl">Payment Details</p>
+                        <div className="flex flex-col gap-4">
+                            <p className="font-medium">Credit Card</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                            <div className="grid grid-rows-2 lg:grid-rows-none lg:grid-cols-2 gap-4">
+                                <input className="input bg-base-200" placeholder="0000 0000 0000 0000" type="text" />
+                                <div className="grid grid-cols-2 gap-4">
+                                    <input className="input bg-base-200" placeholder="MM / YY" type="text" />
+                                    <input className="input bg-base-200" placeholder="CVV" type="text" />
+                                </div>
+                            </div>
+                            <input className="input bg-base-200" placeholder="Card Holder Name" type="text" />
+                        </div>
+                        <hr />
+                        <div className="flex flex-row gap-4">
+                            <button className="btn btn-primary text-white w-48">Pay now</button>
+                            <button className="btn w-48 ">Cancel</button>
+                        </div>
                     </div>
                     <div>
                         <p className="font-medium text-2xl">Order Summary</p>
