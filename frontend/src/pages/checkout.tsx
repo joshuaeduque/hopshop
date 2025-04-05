@@ -40,6 +40,25 @@ export default function Checkout() {
                         ))}
                         <hr />
                         <p className="font-medium text-xl">Shipping Details</p>
+                        <div className="flex flex-col gap-4">
+                            <div className="grid gap-4 grid-rows-2 lg:grid-rows-none lg:grid-cols-2">
+                                <input className="input bg-base-200" type="text" placeholder="First Name" />
+                                <input className="input bg-base-200" type="text" placeholder="Last Name" />
+                            </div>
+                            <input className="input bg-base-200" type="text" placeholder="Address" />
+                            <input className="input bg-base-200" type="text" placeholder="Address 2" />
+                            <div className="grid gap-4 grid-rows-2 lg:grid-rows-none lg:grid-cols-2">
+                                <select className="select bg-base-200" defaultValue="Country">
+                                    <option disabled>Country</option>
+                                    <option>United States</option>
+                                </select>
+                                <input className="input bg-base-200" type="text" placeholder="City" />
+                            </div>
+                            <div className="grid gap-4 grid-rows-2 lg:grid-rows-none lg:grid-cols-2">
+                                <input className="input bg-base-200" type="text" placeholder="Zip/Postal Code" />
+                                <input className="input bg-base-200" type="text" placeholder="Phone Number" />
+                            </div>
+                        </div>
                         <hr />
                         <p className="font-medium text-xl">Payment Details</p>
                     </div>
