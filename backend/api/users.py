@@ -5,11 +5,13 @@
 """
 This module defines the API endpoints for users.
 """
-from fastapi import APIRouter, Depends, HTTPException, Query
 from typing import List
+
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlmodel import Session, select
+
+from backend.db.database import SessionDep, get_session
 from backend.db.models.user import User
-from backend.db.database import get_session, SessionDep
 from backend.schemas.user import UserRead
 
 router = APIRouter(prefix="/users", tags=["users"])

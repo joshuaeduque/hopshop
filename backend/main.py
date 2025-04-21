@@ -6,14 +6,19 @@
 this module defines the main application and includes API endpoints and configurations.
 """
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
-from fastapi.responses import FileResponse
+from pathlib import Path
+
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.db.database import create_db_and_tables
+from fastapi.responses import FileResponse
+from sqlmodel import Session, select
+
+from backend.api.auth import router as auth_router
 from backend.api.neons import router as neon_router
 from backend.api.users import router as user_router
-from backend.api.auth import router as auth_router
 from backend.core.config import settings
+from backend.db.database import create_db_and_tables, engine
+from backend.db.models.user import User
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -67,12 +72,27 @@ def root():
     """
     return {'message': 'Hello World'}
 
+# Use Path for cross-platform compatibility
+IMAGES_DIR = Path(__file__).parent / "images"
+
 @app.get('/pacman')
 def pacman():
-    """
-    Endpoint to serve the pacman image.
+    """Endpoint to serve the pacman image."""
+    image_path = IMAGES_DIR / "pacman.jpg"
+    if not image_path.exists():
+        raise HTTPException(status_code=404, detail="Image not found")
+    return FileResponse(str(image_path))
 
-    Returns:
-        FileResponse: A FileResponse object containing the pacman image.
-    """
-    return FileResponse('images/pacman.jpg')
+@app.get("/api/v1/test-db", tags=["utils"])
+async def test_db():
+    """Test database connection"""
+    try:
+        with Session(engine) as session:
+            # Try a simple query
+            result = session.exec(select(User)).first()
+            return result
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Database connection failed: {str(e)}"
+        )

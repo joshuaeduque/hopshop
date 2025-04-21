@@ -4,8 +4,12 @@
 #
 
 from typing import List
+
 from sqlmodel import Session, select
+
 from ..db.models.neon import Neon
+
+
 # TODO: use this as boiler plate for other services
 def get_all_neons(session: Session, offset: int = 0, limit: int = 100) -> List[Neon]:
     """

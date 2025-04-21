@@ -3,8 +3,11 @@
 # This file defines the pydantic schemas for neon objects.
 #
 
-from pydantic import BaseModel
 from typing import Optional
+
+from pydantic import BaseModel
+
+
 # TODO: use this as boiler plate for other table schemas
 class NeonBase(BaseModel):
     """

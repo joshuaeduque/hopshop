@@ -23,4 +23,10 @@ if (-not $env:VIRTUAL_ENV) {
 Write-Host "Virtual environment activated" -ForegroundColor Green
 
 # Execute the backend
-fastapi dev .\backend\main.py
+
+
+# Set environment variable to disable uvloop on Windows
+$env:DISABLE_UVLOOP = "1"
+
+# Run the FastAPI application with uvicorn
+uvicorn backend.main:app --reload
