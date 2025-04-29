@@ -8,6 +8,7 @@ Set-Location -Path .\frontend -ErrorAction Stop
 foreach ($port in @(3000, 9229, 9230)) {
     $netstatOutput = netstat -ano | Select-String ":$port " | Select-String "LISTENING"
     if ($netstatOutput) {
+
         $pidMatch = $netstatOutput -match '(\d+)$'
         if ($pidMatch) {
             $processId = $Matches[1]

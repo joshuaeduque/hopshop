@@ -24,6 +24,7 @@ Write-Host "Virtual environment activated" -ForegroundColor Green
 
 # Execute the backend
 
+
 # Set environment variable to disable uvloop on Windows
 $env:DISABLE_UVLOOP = "1"
 
