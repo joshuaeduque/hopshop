@@ -16,6 +16,7 @@ from sqlmodel import Session, select
 from backend.api.auth import router as auth_router
 from backend.api.neons import router as neon_router
 from backend.api.users import router as user_router
+from backend.api.products import router as product_router
 from backend.core.config import settings
 from backend.db.database import create_db_and_tables, engine
 from backend.db.models.user import User
@@ -61,6 +62,7 @@ app.router.lifespan_context = lifespan
 app.include_router(neon_router, prefix=settings.API_V1_STR)
 app.include_router(user_router, prefix=settings.API_V1_STR)
 app.include_router(auth_router, prefix=settings.API_V1_STR)
+app.include_router(product_router, prefix=settings.API_V1_STR)
 
 @app.get('/')
 def root():
