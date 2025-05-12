@@ -11,6 +11,20 @@ from backend.schemas.product import ProductRead, ProductCreate
 router = APIRouter(prefix="/products", tags=["products"])
 
 
+@router.get("/", response_model=list[ProductRead])
+def list_products(
+    category: str | None = Query(None),
+    offset: int = Query(0, ge=0),
+    limit: int = Query(100, le=100),
+    session: Session = Depends(get_session),
+) -> list[ProductRead]:
+    query = select(Product)
+    if category:
+        query = query.where(Product.category == category)
+    query = query.offset(offset).limit(limit)
+    return session.exec(query).all()
+
+
 @router.get("/{id}", response_model=ProductRead)
 def read_product(id: int, session: SessionDep) -> ProductRead:
     product = session.get(Product, id)
