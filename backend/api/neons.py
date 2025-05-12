@@ -11,9 +11,10 @@ from backend.db.database import get_session
 from backend.schemas.neon import NeonRead
 from backend.services.neon_service import get_all_neons
 
-router = APIRouter()
+router = APIRouter(prefix="/neons", tags=["neons"])
+
 # TODO: use this as boiler plate for other routers
-@router.get('/neons', response_model=List[NeonRead])
+@router.get('/', response_model=List[NeonRead])
 def read_neons(
     session: Session = Depends(get_session),
     offset: int = Query(0, ge=0),

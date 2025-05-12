@@ -85,6 +85,8 @@ class Settings(BaseSettings):
         case_sensitive = True
         env_file = ".env"
         env_file_encoding = 'utf-8'
+        # Josh - had to add this to get it working on my machine
+        extra = "allow"
 
 def get_settings() -> Settings:
     return Settings()

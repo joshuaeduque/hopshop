@@ -11,7 +11,8 @@ from backend.schemas.product import ProductRead
 router = APIRouter(prefix="/products", tags=["products"])
 
 @router.get("/{id}", response_model=ProductRead)
-def read_product(id: int, session: SessionDep):
+def read_product(id: int, session: SessionDep = Depends(get_session)):
+    
     product = session.get(Product, id)
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
