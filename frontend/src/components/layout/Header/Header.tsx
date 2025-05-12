@@ -1,9 +1,11 @@
 import LoginModal from "@/components/features/auth/loginModal";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+
 
 export interface HeaderProps {
   className?: string;
@@ -11,6 +13,7 @@ export interface HeaderProps {
 
 export default function Header({ className = "" }: HeaderProps) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, status } = useSession();
   const loading = status === "loading";
   const router = useRouter();
@@ -27,7 +30,44 @@ export default function Header({ className = "" }: HeaderProps) {
   
   return (
     <div className={`navbar bg-base-300 ${className}`}>
-      <div className="navbar-start">
+      <div className="navbar-start flex items-center gap-2">
+        <div className="dropdown sm:block md:hidden">
+          <label 
+            tabIndex={0} 
+            className="btn btn-square btn-ghost"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <div className="relative w-5 h-5">
+              <FaBars className={`absolute h-5 w-5 transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-0 rotate-90' : 'opacity-100 rotate-0'}`} />
+              <FaTimes className={`absolute h-5 w-5 transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-100 rotate-0' : 'opacity-0 -rotate-90'}`} />
+            </div>
+          </label>
+          
+          {/* Full-screen mobile menu */}
+          <div 
+            className={`
+              fixed top-[64px] left-0 w-full h-[calc(100vh-64px)] bg-base-200
+              transition-all duration-300 ease-in-out transform 
+              ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}
+              ${isMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}
+              z-40
+            `}
+          >
+            <ul className="menu menu-sm p-4 w-full">
+              {categories.map((category) => (
+                <li key={category.href}>
+                  <Link 
+                    href={category.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="py-3 text-lg hover:bg-base-300 transition-colors duration-200"
+                  >
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <Link href="/" className="btn btn-ghost text-xl">
           HopShop
         </Link>
