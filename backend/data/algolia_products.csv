@@ -1,0 +1,51 @@
+objectID,name,price,image,category,rating,description,inStock,featured
+1,Mineral Supplement,2111,/products/supplements/mineral-supplement.jpg,supplements,3.1,Essential mineral supplement for maintaining frog health.,True,False
+2,Hide,27103,/products/accessories/hide.jpg,accessories,4.7,Essential hide for maintaining your frog's environment.,False,True
+3,Electrolyte Supplement,19539,/products/supplements/electrolyte-supplement.jpg,supplements,4.4,Essential electrolyte supplement for maintaining frog health.,True,True
+4,Live Black Soldier Fly Larvae,26015,/products/insects/live-black-soldier-fly-larvae.jpg,insects,3.5,Fresh live black soldier fly larvae - perfect food source for your frogs.,True,False
+5,Aquarium Kit,11373,/products/supplies/aquarium-kit.jpg,supplies,3.2,Complete aquarium kit for creating the perfect frog habitat.,True,False
+6,Live Waxworms,28961,/products/insects/live-waxworms.jpg,insects,3.7,Fresh live waxworms - perfect food source for your frogs.,False,False
+7,Live Fruit Flies,14146,/products/insects/live-fruit-flies.jpg,insects,3.7,Fresh live fruit flies - perfect food source for your frogs.,True,False
+8,Aquarium Kit,2569,/products/supplies/aquarium-kit.jpg,supplies,4.0,Complete aquarium kit for creating the perfect frog habitat.,True,False
+9,Frog Tablets,23830,/products/food/frog-tablets.jpg,food,3.6,Premium quality frog tablets for optimal frog nutrition.,True,False
+10,Decoration,24312,/products/accessories/decoration.jpg,accessories,4.9,Essential decoration for maintaining your frog's environment.,True,False
+11,Live Mealworms,17578,/products/insects/live-mealworms.jpg,insects,4.7,Fresh live mealworms - perfect food source for your frogs.,True,False
+12,Lily Pad,21061,/products/accessories/lily-pad.jpg,accessories,4.4,Essential lily pad for maintaining your frog's environment.,False,False
+13,Probiotic Supplement,4576,/products/supplements/probiotic-supplement.jpg,supplements,3.7,Essential probiotic supplement for maintaining frog health.,True,False
+14,Live Dubia Roaches,5677,/products/insects/live-dubia-roaches.jpg,insects,3.4,Fresh live dubia roaches - perfect food source for your frogs.,True,False
+15,Enclosure Kit,6492,/products/supplies/enclosure-kit.jpg,supplies,3.0,Complete enclosure kit for creating the perfect frog habitat.,True,False
+16,Vitamin D3 Supplement,19740,/products/supplements/vitamin-d3-supplement.jpg,supplements,4.8,Essential vitamin d3 supplement for maintaining frog health.,True,True
+17,Tank Kit,11978,/products/supplies/tank-kit.jpg,supplies,3.1,Complete tank kit for creating the perfect frog habitat.,True,True
+18,UVB Lamp,12449,/products/accessories/uvb-lamp.jpg,accessories,4.7,Essential uvb lamp for maintaining your frog's environment.,True,False
+19,Electrolyte Supplement,18461,/products/supplements/electrolyte-supplement.jpg,supplements,4.5,Essential electrolyte supplement for maintaining frog health.,True,False
+20,Glass Frog,17776,/products/frogs/glass-frog.jpg,frogs,4.2,A beautiful Glass Frog for your collection. Includes care guide.,True,False
+21,Frog Flakes,20791,/products/food/frog-flakes.jpg,food,4.3,Premium quality frog flakes for optimal frog nutrition.,True,False
+22,Multivitamin Supplement,626,/products/supplements/multivitamin-supplement.jpg,supplements,4.4,Essential multivitamin supplement for maintaining frog health.,True,False
+23,Log,10898,/products/accessories/log.jpg,accessories,4.8,Essential log for maintaining your frog's environment.,True,False
+24,Vitamin D3 Supplement,1331,/products/supplements/vitamin-d3-supplement.jpg,supplements,3.4,Essential vitamin d3 supplement for maintaining frog health.,False,False
+25,Electrolyte Supplement,2339,/products/supplements/electrolyte-supplement.jpg,supplements,3.4,Essential electrolyte supplement for maintaining frog health.,False,False
+26,Vivarium Kit,5512,/products/supplies/vivarium-kit.jpg,supplies,3.7,Complete vivarium kit for creating the perfect frog habitat.,True,False
+27,Poison Dart Frog,13357,/products/frogs/poison-dart-frog.jpg,frogs,3.7,A beautiful Poison Dart Frog for your collection. Includes care guide.,True,True
+28,Heater,5127,/products/accessories/heater.jpg,accessories,4.6,Essential heater for maintaining your frog's environment.,False,False
+29,Multivitamin Supplement,13889,/products/supplements/multivitamin-supplement.jpg,supplements,4.6,Essential multivitamin supplement for maintaining frog health.,False,False
+30,Live Fruit Flies,11522,/products/insects/live-fruit-flies.jpg,insects,4.0,Fresh live fruit flies - perfect food source for your frogs.,True,False
+31,Frog Sticks,17736,/products/food/frog-sticks.jpg,food,3.8,Premium quality frog sticks for optimal frog nutrition.,True,False
+32,African Dwarf Frog,7606,/products/frogs/african-dwarf-frog.jpg,frogs,4.3,A beautiful African Dwarf Frog for your collection. Includes care guide.,True,False
+33,Frog Sticks,23653,/products/food/frog-sticks.jpg,food,3.8,Premium quality frog sticks for optimal frog nutrition.,True,False
+34,Terrarium Kit,7591,/products/supplies/terrarium-kit.jpg,supplies,4.8,Complete terrarium kit for creating the perfect frog habitat.,True,False
+35,Plant,6521,/products/accessories/plant.jpg,accessories,4.3,Essential plant for maintaining your frog's environment.,True,False
+36,Live Black Soldier Fly Larvae,29551,/products/insects/live-black-soldier-fly-larvae.jpg,insects,4.2,Fresh live black soldier fly larvae - perfect food source for your frogs.,True,False
+37,Feeder,15565,/products/accessories/feeder.jpg,accessories,3.6,Essential feeder for maintaining your frog's environment.,True,False
+38,Live Crickets,4439,/products/insects/live-crickets.jpg,insects,4.4,Fresh live crickets - perfect food source for your frogs.,True,False
+39,Vivarium Kit,7430,/products/supplies/vivarium-kit.jpg,supplies,3.2,Complete vivarium kit for creating the perfect frog habitat.,True,False
+40,Clown Frog,12559,/products/frogs/clown-frog.jpg,frogs,3.1,A beautiful Clown Frog for your collection. Includes care guide.,True,False
+41,Frog Powder,20021,/products/food/frog-powder.jpg,food,3.1,Premium quality frog powder for optimal frog nutrition.,True,False
+42,Frog Flakes,22707,/products/food/frog-flakes.jpg,food,4.9,Premium quality frog flakes for optimal frog nutrition.,True,False
+43,Live Dubia Roaches,15650,/products/insects/live-dubia-roaches.jpg,insects,3.2,Fresh live dubia roaches - perfect food source for your frogs.,True,False
+44,Frog Powder,29776,/products/food/frog-powder.jpg,food,4.4,Premium quality frog powder for optimal frog nutrition.,True,False
+45,Terrarium Kit,2420,/products/supplies/terrarium-kit.jpg,supplies,4.2,Complete terrarium kit for creating the perfect frog habitat.,True,False
+46,Live Grasshoppers,15332,/products/insects/live-grasshoppers.jpg,insects,3.7,Fresh live grasshoppers - perfect food source for your frogs.,True,False
+47,Electrolyte Supplement,28191,/products/supplements/electrolyte-supplement.jpg,supplements,4.1,Essential electrolyte supplement for maintaining frog health.,True,True
+48,Live Mealworms,931,/products/insects/live-mealworms.jpg,insects,4.3,Fresh live mealworms - perfect food source for your frogs.,False,True
+49,Green Tree Frog,22579,/products/frogs/green-tree-frog.jpg,frogs,4.5,A beautiful Green Tree Frog for your collection. Includes care guide.,True,False
+50,Pacman Frog,14797,/products/frogs/pacman-frog.jpg,frogs,4.8,A beautiful Pacman Frog for your collection. Includes care guide.,True,True
