@@ -9,3 +9,5 @@ class Product(SQLModel, table=True):
     description: str = Field(index=True)
     price: int = Field(index=True)
     category: str = Field(index=True)
+    rating: float = Field(index=True)
+    quantity: int = Field(index=True)

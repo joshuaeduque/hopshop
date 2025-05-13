@@ -95,176 +95,54 @@ const CATEGORIES = [
   }
 ];
 
-// Mock data for products
-const ALL_PRODUCTS = [
-  {
-    id: 1,
-    name: "Green Tree Frog",
-    price: 4999,
-    image: "/products/green-tree-frog.jpg",
-    category: "frogs",
-    rating: 4.5,
-    description: "A beautiful and friendly amphibian pet.",
-    inStock: true
-  },
-  {
-    id: 2,
-    name: "Terrarium Kit",
-    price: 12999,
-    image: "/products/terrarium.jpg",
-    category: "supplies",
-    rating: 4.8,
-    description: "Complete setup for your frog habitat.",
-    inStock: true,
-    featured: true
-  },
-  {
-    id: 3,
-    name: "Cricket Feeder",
-    price: 1499,
-    image: "/products/cricket-feeder.jpg",
-    category: "accessories",
-    rating: 4.2,
-    description: "Convenient feeding solution for your amphibians.",
-    inStock: true
-  },
-  {
-    id: 4,
-    name: "Frog Food Pellets",
-    price: 999,
-    image: "/products/frog-food.jpg",
-    category: "food",
-    rating: 4.7,
-    description: "Nutritionally complete diet for pet frogs.",
-    inStock: true,
-    featured: true
-  },
-  {
-    id: 5,
-    name: "Humidity Controller",
-    price: 3499,
-    image: "/products/humidity-controller.jpg",
-    category: "water",
-    rating: 4.6,
-    description: "Maintain optimal humidity levels for your frog.",
-    inStock: false,
-    featured: true
-  },
-  {
-    id: 6,
-    name: "Decorative Lily Pad",
-    price: 1299,
-    image: "/products/lily-pad.jpg",
-    category: "decorations",
-    rating: 4.3,
-    description: "Beautiful decoration for your frog's habitat.",
-    inStock: true
-  },
-  {
-    id: 7,
-    name: "Frog Care Guide Book",
-    price: 1999,
-    image: "/products/frog-book.jpg",
-    category: "books",
-    rating: 4.9,
-    description: "Comprehensive guide to caring for pet frogs.",
-    inStock: true,
-    featured: true
-  },
-  {
-    id: 8,
-    name: "Frog T-Shirt",
-    price: 2499,
-    image: "/products/frog-shirt.jpg",
-    category: "apparel",
-    rating: 4.4,
-    description: "Stylish t-shirt for frog enthusiasts.",
-    inStock: true
-  },
-  {
-    id: 9,
-    name: "Heat Lamp",
-    price: 2999,
-    image: "/products/heat-lamp.jpg",
-    category: "heating",
-    rating: 4.5,
-    description: "Provides optimal warmth for your amphibian habitat.",
-    inStock: true
-  },
-  {
-    id: 10,
-    name: "Calcium Supplement",
-    price: 899,
-    image: "/products/calcium-supplement.jpg",
-    category: "supplements",
-    rating: 4.7,
-    description: "Essential supplement for frog health.",
-    inStock: true
-  },
-  {
-    id: 11,
-    name: "Live Crickets",
-    price: 799,
-    image: "/products/crickets.jpg",
-    category: "insects",
-    rating: 4.2,
-    description: "Fresh live food for your frogs.",
-    inStock: true,
-    featured: true
-  }
-];
 
 export default function CategoryPage() {
   const router = useRouter();
   const { id } = router.query;
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [sortOption, setSortOption] = useState("featured");
-  
+
   useEffect(() => {
-    // Simulate data loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 600);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  useEffect(() => {
-    if (id && typeof id === 'string') {
-      // Find the category
+    const loadProducts = async () => {
+      if (!id || typeof id !== 'string') return;
+
+      setIsLoading(true);
+
       const foundCategory = CATEGORIES.find(cat => cat.id === id);
       setCategory(foundCategory);
-      
-      // Filter products by category
-      let filteredProducts = [];
-      
-      if (id === 'featured') {
-        filteredProducts = ALL_PRODUCTS.filter(product => product.featured);
-      } else {
-        filteredProducts = ALL_PRODUCTS.filter(product => product.category === id);
+
+      try {
+        const res = await fetch(`http://localhost:8000/api/v1/products/?category=${id}&offset=0&limit=100`);
+        const data = await res.json();
+
+        let filtered = data;
+
+        // Apply sort
+        switch (sortOption) {
+          case "price-low":
+            filtered.sort((a: any, b: any) => a.price - b.price);
+            break;
+          case "price-high":
+            filtered.sort((a: any, b: any) => b.price - a.price);
+            break;
+          case "rating":
+            filtered.sort((a: any, b: any) => b.rating - a.rating);
+            break;
+        }
+
+        setProducts(filtered);
+      } catch (err) {
+        console.error("Failed to fetch products", err);
+        setProducts([]);
+      } finally {
+        setIsLoading(false);
       }
-      
-      // Sort products
-      switch (sortOption) {
-        case "price-low":
-          filteredProducts.sort((a, b) => a.price - b.price);
-          break;
-        case "price-high":
-          filteredProducts.sort((a, b) => b.price - a.price);
-          break;
-        case "rating":
-          filteredProducts.sort((a, b) => b.rating - a.rating);
-          break;
-        default:
-          // Default sorting (featured)
-          break;
-      }
-      
-      setProducts(filteredProducts);
-    }
+    };
+
+    loadProducts();
   }, [id, sortOption]);
 
   if (!id) {
@@ -275,14 +153,14 @@ export default function CategoryPage() {
     <>
       <Header />
       <Navigation />
-      
+
       <main className="min-h-screen bg-base-100 py-8">
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <Link href="/categories" className="btn btn-ghost btn-sm mb-4">
               <FaArrowLeft className="mr-2" /> Back to Categories
             </Link>
-            
+
             {isLoading ? (
               <div className="animate-pulse">
                 <div className="h-8 bg-base-300 w-64 rounded mb-2"></div>
@@ -297,11 +175,11 @@ export default function CategoryPage() {
               <h1 className="text-3xl font-bold">Category Not Found</h1>
             )}
           </div>
-          
+
           {!isLoading && category && (
             <div className="mb-6 flex justify-between items-center">
               <p>{products.length} products found</p>
-              
+
               <div className="flex items-center gap-2">
                 <span>Sort by:</span>
                 <select
@@ -317,7 +195,7 @@ export default function CategoryPage() {
               </div>
             </div>
           )}
-          
+
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {[...Array(8)].map((_, i) => (
@@ -337,14 +215,14 @@ export default function CategoryPage() {
               {products.map(product => (
                 <div key={product.id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
                   <figure className="relative">
-                    <Image 
-                      src={product.image} 
-                      alt={product.name} 
+                    <Image
+                      src={product.image_url}
+                      alt={product.name}
                       width={400}
                       height={300}
                       className="w-full h-48 object-cover"
                     />
-                    {!product.inStock && (
+                    {product.quantity < 1 && (
                       <div className="absolute inset-0 bg-base-300 bg-opacity-70 flex items-center justify-center">
                         <span className="badge badge-error badge-lg">Out of Stock</span>
                       </div>
@@ -357,11 +235,11 @@ export default function CategoryPage() {
                     <div className="flex items-center gap-1">
                       <div className="rating rating-sm">
                         {[...Array(5)].map((_, i) => (
-                          <input 
-                            key={i} 
-                            type="radio" 
-                            name={`rating-${product.id}`} 
-                            className="mask mask-star-2 bg-orange-400" 
+                          <input
+                            key={i}
+                            type="radio"
+                            name={`rating-${product.id}`}
+                            className="mask mask-star-2 bg-orange-400"
                             checked={i + 1 === Math.round(product.rating)}
                             readOnly
                           />
@@ -372,7 +250,7 @@ export default function CategoryPage() {
                     <p className="text-sm">{product.description}</p>
                     <div className="flex justify-between items-center mt-4">
                       <span className="text-xl font-bold">${(product.price / 100).toFixed(2)}</span>
-                      <button 
+                      <button
                         className="btn btn-primary btn-sm"
                         disabled={!product.inStock}
                       >
@@ -395,7 +273,7 @@ export default function CategoryPage() {
           )}
         </div>
       </main>
-      
+
       <Footer />
     </>
   );

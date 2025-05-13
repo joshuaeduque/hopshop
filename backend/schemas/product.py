@@ -6,6 +6,8 @@ class ProductBase(BaseModel):
     description: str
     price: int
     category: str
+    rating: float
+    quantity: int
 
 class ProductCreate(ProductBase):
     pass
