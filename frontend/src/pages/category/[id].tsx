@@ -115,7 +115,7 @@ export default function CategoryPage() {
       setCategory(foundCategory);
 
       try {
-        const res = await fetch(`http://localhost:8000/api/v1/products/?category=${id}&offset=0&limit=100`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/?category=${id}&offset=0&limit=100`);
         const data = await res.json();
 
         let filtered = data;

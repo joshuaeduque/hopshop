@@ -17,7 +17,7 @@ export default function ProductPage() {
         // const foundProduct = ALL_PRODUCTS.find(p => p.id.toString() === id); setProduct(foundProduct);
 
         try {
-          const res = await fetch(`http://localhost:8000/api/v1/products/${id}`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/products/${id}`);
           const data = await res.json();
 
           setProduct(data);
