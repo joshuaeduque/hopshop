@@ -6,7 +6,6 @@
 This module defines the configuration settings for the application.
 """
 
-
 from typing import List, Union
 
 from pydantic import field_validator
@@ -24,6 +23,7 @@ class Settings(BaseSettings):
         VERSION (str): The version of the project.
         BACKEND_CORS_ORIGINS (List[str]): A list of allowed origins for CORS.
     """
+
     # PostgreSQL settings
     PGUSER: str
     PGPASSWORD: str
@@ -45,6 +45,15 @@ class Settings(BaseSettings):
     GOOGLE_CLIENT_SECRET: str = ""
     GITHUB_CLIENT_ID: str = ""
     GITHUB_CLIENT_SECRET: str = ""
+
+    # Email settings
+    EMAILS_FROM_EMAIL: str = "noreply@hopshop.example.com"
+    EMAILS_FROM_NAME: str = "HopShop"
+    SMTP_HOST: str = ""
+    SMTP_PORT: int = 587
+    SMTP_TLS: bool = True
+    SMTP_USER: str = ""
+    SMTP_PASSWORD: str = ""
 
     # Validate PostgreSQL URL
     @field_validator("PGDATABASE")
@@ -84,11 +93,12 @@ class Settings(BaseSettings):
     class Config:
         case_sensitive = True
         env_file = ".env"
-        env_file_encoding = 'utf-8'
+        env_file_encoding = "utf-8"
         # Josh - had to add this to get it working on my machine
         extra = "allow"
 
 def get_settings() -> Settings:
     return Settings()
+
 
 settings = get_settings()
