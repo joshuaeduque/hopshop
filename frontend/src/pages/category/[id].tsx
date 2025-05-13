@@ -213,53 +213,55 @@ export default function CategoryPage() {
           ) : products.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {products.map(product => (
-                <div key={product.id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
-                  <figure className="relative">
-                    <Image
-                      src={product.image_url}
-                      alt={product.name}
-                      width={400}
-                      height={300}
-                      className="w-full h-48 object-cover"
-                    />
-                    {product.quantity < 1 && (
-                      <div className="absolute inset-0 bg-base-300 bg-opacity-70 flex items-center justify-center">
-                        <span className="badge badge-error badge-lg">Out of Stock</span>
+                <Link href={`/products/${product.id}`}>
+                  <div key={product.id} className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow">
+                    <figure className="relative">
+                      <Image
+                        src={product.image_url}
+                        alt={product.name}
+                        width={400}
+                        height={300}
+                        className="w-full h-48 object-cover"
+                      />
+                      {product.quantity < 1 && (
+                        <div className="absolute inset-0 bg-base-300 bg-opacity-70 flex items-center justify-center">
+                          <span className="badge badge-error badge-lg">Out of Stock</span>
+                        </div>
+                      )}
+                    </figure>
+                    <div className="card-body">
+                      <h3 className="card-title">
+                        {product.name}
+                      </h3>
+                      <div className="flex items-center gap-1">
+                        <div className="rating rating-sm">
+                          {[...Array(5)].map((_, i) => (
+                            <input
+                              key={i}
+                              type="radio"
+                              name={`rating-${product.id}`}
+                              className="mask mask-star-2 bg-orange-400"
+                              checked={i + 1 === Math.round(product.rating)}
+                              readOnly
+                            />
+                          ))}
+                        </div>
+                        <span className="text-sm">({product.rating})</span>
                       </div>
-                    )}
-                  </figure>
-                  <div className="card-body">
-                    <h3 className="card-title">
-                      {product.name}
-                    </h3>
-                    <div className="flex items-center gap-1">
-                      <div className="rating rating-sm">
-                        {[...Array(5)].map((_, i) => (
-                          <input
-                            key={i}
-                            type="radio"
-                            name={`rating-${product.id}`}
-                            className="mask mask-star-2 bg-orange-400"
-                            checked={i + 1 === Math.round(product.rating)}
-                            readOnly
-                          />
-                        ))}
+                      <p className="text-sm">{product.description}</p>
+                      <div className="flex justify-between items-center mt-4">
+                        <span className="text-xl font-bold">${(product.price / 100).toFixed(2)}</span>
+                        <button
+                          className="btn btn-primary btn-sm"
+                          disabled={product.quantity < 1}
+                        >
+                          <FaShoppingCart className="mr-2" />
+                          Add to Cart
+                        </button>
                       </div>
-                      <span className="text-sm">({product.rating})</span>
-                    </div>
-                    <p className="text-sm">{product.description}</p>
-                    <div className="flex justify-between items-center mt-4">
-                      <span className="text-xl font-bold">${(product.price / 100).toFixed(2)}</span>
-                      <button
-                        className="btn btn-primary btn-sm"
-                        disabled={!product.inStock}
-                      >
-                        <FaShoppingCart className="mr-2" />
-                        Add to Cart
-                      </button>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           ) : (
