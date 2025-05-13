@@ -1,5 +1,5 @@
 from .neon import NeonBase, NeonCreate, NeonRead
-from .user import UserBase, UserCreate, UserRead
+from .user import UserBase, UserCreate, UserRead, UserWithPasswordHash
 
 __all__ = [
     "NeonBase",
@@ -8,6 +8,7 @@ __all__ = [
     "UserBase",
     "UserCreate",
     "UserRead",
+    "UserWithPasswordHash",
     # Add other schemas here as needed
 ]
 # This file imports the NeonBase, NeonCreate, and NeonRead classes from the neon module.

@@ -1,8 +1,11 @@
 import LoginModal from "@/components/features/auth/loginModal";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaBars, FaSearch, FaShoppingCart, FaTimes, FaUser } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+
 
 export interface HeaderProps {
   className?: string;
@@ -13,17 +16,17 @@ export default function Header({ className = "" }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data: session, status } = useSession();
   const loading = status === "loading";
-
-  const categories = [
-    { name: 'Pet Frogs', href: '/category/frogs' },
-    { name: 'Live Insects', href: '/category/insects' },
-    { name: 'Heat & Lighting', href: '/category/heating' },
-    { name: 'Water & Humidity', href: '/category/water' },
-    { name: 'Decorations', href: '/category/decorations' },
-    { name: 'Supplements', href: '/category/supplements' },
-    { name: 'Apparel', href: '/category/apparel' },
-    { name: 'Books', href: '/category/books' },
-  ];
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  const handleSearchSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+    } else {
+      router.push('/search');
+    }
+  };
   
   return (
     <div className={`navbar bg-base-300 ${className}`}>
@@ -72,14 +75,18 @@ export default function Header({ className = "" }: HeaderProps) {
 
       <div className="navbar-center">
         <div className="flex gap-1">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-full md:w-96"
-          />
-          <button className="btn btn-ghost btn-circle">
-            <FaSearch className="w-5 h-5" />
-          </button>
+          <form onSubmit={handleSearchSubmit} className="flex gap-1 w-full">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="input input-bordered w-full md:w-96"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit" className="btn btn-ghost btn-circle">
+              <FaSearch className="w-5 h-5" />
+            </button>
+          </form>
         </div>
       </div>
 
