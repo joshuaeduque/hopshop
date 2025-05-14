@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Navigation from "@/components/layout/Navigation";
-import Footer from "@/components/layout/Footer";
-import Link from "next/link";
 import Image from "next/image";
-import { FaTrash, FaArrowRight, FaShoppingCart, FaLeaf, FaShippingFast, FaLock, FaArrowLeft, FaTimes, FaHeart } from "react-icons/fa";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FaArrowLeft, FaArrowRight, FaHeart, FaLeaf, FaLock, FaShippingFast, FaShoppingCart, FaTimes, FaTrash } from "react-icons/fa";
 
 // Mock data for cart items
 const INITIAL_CART_ITEMS = [
@@ -45,7 +45,11 @@ export default function Cart() {
   }, []);
 
   const updateQuantity = (id: number, newQuantity: number) => {
-    if (newQuantity < 1) return;
+    if (newQuantity < 1) {
+      // Remove the item if quantity is less than 1
+      removeItem(id);
+      return;
+    }
 
     setCartItems(prevItems =>
       prevItems.map(item =>
@@ -153,8 +157,8 @@ export default function Cart() {
                     <div className="bg-base-200 p-4 hidden md:grid grid-cols-12 gap-4 font-semibold">
                       <div className="col-span-6">Product</div>
                       <div className="col-span-2 text-center">Price</div>
-                      <div className="col-span-2 text-center">Quantity</div>
-                      <div className="col-span-2 text-center">Total</div>
+                      <div className="col-span-4 text-center">Quantity</div>
+                      
                     </div>
 
                     {/* Cart Items */}
@@ -219,7 +223,7 @@ export default function Cart() {
                           </div>
 
                           {/* Quantity Controls */}
-                          <div className="md:col-span-2 flex justify-center">
+                          <div className="md:col-span-4 flex justify-center">
                             <div className="flex items-center border border-base-300 rounded-lg overflow-hidden">
                               <button
                                 className="px-3 py-1 bg-base-200 hover:bg-base-300 transition-colors"
@@ -336,7 +340,7 @@ export default function Cart() {
                 <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
                 <p className="text-gray-500 max-w-md mb-8">Looks like you haven't added any items to your cart yet. Explore our products and find something you'll love!</p>
                 <Link href="/shop" className="btn btn-primary btn-lg gap-2">
-                  Start Shopping <FaArrowRight />
+                  Continue Shopping <FaArrowRight />
                 </Link>
               </div>
             </div>

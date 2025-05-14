@@ -1,10 +1,11 @@
 import LoginModal from "@/components/features/auth/loginModal";
+import { useCart } from "@/context/CartContext";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaBars, FaSearch, FaShoppingCart, FaTimes, FaUser } from "react-icons/fa";
 
 
 export interface HeaderProps {
@@ -18,6 +19,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const loading = status === "loading";
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
+  const { itemCount, subtotal, cartItems } = useCart();
   
   const handleSearchSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -54,10 +56,19 @@ export default function Header({ className = "" }: HeaderProps) {
             `}
           >
             <ul className="menu menu-sm p-4 w-full">
-              {categories.map((category) => (
-                <li key={category.href}>
+              {[
+                { id: 'frogs', name: 'Pet Frogs' },
+                { id: 'insects', name: 'Live Insects' },
+                { id: 'heating', name: 'Heat & Lighting' },
+                { id: 'water', name: 'Water & Humidity' },
+                { id: 'decorations', name: 'Decorations' },
+                { id: 'supplements', name: 'Supplements' },
+                { id: 'apparel', name: 'Apparel' },
+                { id: 'books', name: 'Books' }
+              ].map((category) => (
+                <li key={category.id}>
                   <Link 
-                    href={category.href}
+                    href={`/category/${category.id}`}
                     onClick={() => setIsMenuOpen(false)}
                     className="py-3 text-lg hover:bg-base-300 transition-colors duration-200"
                   >
@@ -127,7 +138,7 @@ export default function Header({ className = "" }: HeaderProps) {
                 >
                   <FaShoppingCart className="w-6 h-6" />
                   <div className="indicator">
-                    <span className="badge badge-sm indicator-item">0</span>
+                    <span className="badge badge-sm indicator-item">{itemCount}</span>
                   </div>
                 </div>
                 <div
@@ -135,8 +146,8 @@ export default function Header({ className = "" }: HeaderProps) {
                   className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow"
                 >
                   <div className="card-body">
-                    <span className="text-lg font-bold">0 Items</span>
-                    <span className="text-info">Subtotal: $0.00</span>
+                    <span className="text-lg font-bold">{itemCount} Items</span>
+                    <span className="text-info">Subtotal: ${(subtotal / 100).toFixed(2)}</span>
                     <div className="card-actions">
                       <Link href="/cart" className="btn btn-primary btn-block">
                         View cart
