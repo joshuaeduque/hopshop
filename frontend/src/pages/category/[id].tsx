@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import Navigation from "@/components/layout/Navigation";
-import Footer from "@/components/layout/Footer";
-import Link from "next/link";
+import { useCart } from "@/context/CartContext";
 import Image from "next/image";
-import { FaShoppingCart, FaStar, FaArrowLeft } from "react-icons/fa";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { FaArrowLeft, FaShoppingCart } from "react-icons/fa";
 
 // Mock data for categories
 const CATEGORIES = [
@@ -100,11 +101,49 @@ export default function CategoryPage() {
   const router = useRouter();
   const { id } = router.query;
 
+  const { addToCart } = useCart();
+  
   const [isLoading, setIsLoading] = useState(true);
   const [category, setCategory] = useState<any>(null);
   const [products, setProducts] = useState<any[]>([]);
   const [sortOption, setSortOption] = useState("featured");
 
+  const [isAddingToCart, setIsAddingToCart] = useState<Record<number, boolean>>({});
+  
+  const handleAddToCart = (product: {
+    id: number;
+    name: string;
+    price: number;
+    image: string;
+    inStock: boolean;
+  }) => {
+    // Prevent multiple rapid clicks
+    if (isAddingToCart[product.id]) return;
+    
+    setIsAddingToCart(prev => ({ ...prev, [product.id]: true }));
+    
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image
+    }, 1);
+    
+    // Reset after a short delay
+    setTimeout(() => {
+      setIsAddingToCart(prev => ({ ...prev, [product.id]: false }));
+    }, 500);
+  };
+
+  useEffect(() => {
+    // Simulate data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
   useEffect(() => {
     const loadProducts = async () => {
       if (!id || typeof id !== 'string') return;
@@ -259,6 +298,24 @@ export default function CategoryPage() {
                           Add to Cart
                         </button>
                       </div>
+
+                      <span className="text-sm">({product.rating})</span>
+                    </div>
+                    <p className="text-sm">{product.description}</p>
+                    <div className="flex justify-between items-center mt-4">
+                      <span className="text-xl font-bold">${(product.price / 100).toFixed(2)}</span>
+                      <button 
+                        className="btn btn-primary btn-sm"
+                        disabled={!product.inStock || isAddingToCart[product.id]}
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        {isAddingToCart[product.id] ? (
+                          <span className="loading loading-spinner loading-xs"></span>
+                        ) : (
+                          <FaShoppingCart className="mr-2" />
+                        )}
+                        Add to Cart
+                      </button>
                     </div>
                   </div>
                 </Link>

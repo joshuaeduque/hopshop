@@ -1,3 +1,4 @@
+import { CartProvider } from '@/context/CartContext';
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 
@@ -13,7 +14,9 @@ function MyApp({
       refetchInterval={5 * 60} 
       refetchOnWindowFocus={true}
     >
-      <Component {...pageProps} />
+      <CartProvider>
+        <Component {...pageProps} />
+      </CartProvider>
     </SessionProvider>
   );
 }

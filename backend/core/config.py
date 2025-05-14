@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     GITHUB_CLIENT_ID: str = ""
     GITHUB_CLIENT_SECRET: str = ""
 
+    # Algolia settings
+    NEXT_PUBLIC_ALGOLIA_APP_ID: str = ""
+    NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: str = ""
+    ALGOLIA_API_KEY: str = ""
+
     # Email settings
     EMAILS_FROM_EMAIL: str = "noreply@hopshop.example.com"
     EMAILS_FROM_NAME: str = "HopShop"

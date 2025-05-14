@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { getUsers } from "@/pages/api/getUsers";
+import { useEffect, useState } from "react";
+
 import { UserRead } from "@/types/user";
 
 const UserList = () => {
@@ -11,7 +11,11 @@ const UserList = () => {
     const fetchUsers = async () => {
       try {
         setLoading(true);
-        const data = await getUsers(0, 10); // Fetch all users with pagination
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/users`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        const data = await response.json();
         setUsers(data);
         setError(null);
       } catch (err) {
